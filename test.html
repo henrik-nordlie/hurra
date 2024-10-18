@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spin to Win</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+
+    #wheel {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 10px solid #333;
+      position: relative;
+      overflow: hidden;
+      transform: rotate(0deg);
+      transition: transform 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    .section {
+      width: 50%;
+      height: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: 0 0;
+      text-align: center;
+      padding-top: 20px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .section:nth-child(1) { background-color: #FF4136; transform: rotate(0deg) translate(-100%, -100%); }
+    .section:nth-child(2) { background-color: #2ECC40; transform: rotate(90deg) translate(-100%, -100%); }
+    .section:nth-child(3) { background-color: #0074D9; transform: rotate(180deg) translate(-100%, -100%); }
+    .section:nth-child(4) { background-color: #FF851B; transform: rotate(270deg) translate(-100%, -100%); }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="wheel">
+    <div class="section">Ingen premie</div>
+    <div class="section">Ingen premie</div>
+    <div class="section">Ingen premie</div>
+    <div class="section">Ergonomisk tastatur!!</div>
+  </div>
+
+  <button id="spinBtn">Spin the Wheel!</button>
+  <div id="result"></div>
+
+  <script>
+    const wheel = document.getElementById('wheel');
+    const result = document.getElementById('result');
+    const button = document.getElementById('spinBtn');
+
+    // Ensuring the user always wins
+    button.addEventListener('click', () => {
+      // Randomize rotation but always land on the prize section (which is 270deg)
+      const spinDeg = Math.floor(Math.random() * 360) + (360 * 4) + 270;
+      
+      wheel.style.transform = `rotate(${spinDeg}deg)`;
+      result.textContent = '';
+
+      // Set a timeout to reveal the result after the spin completes
+      setTimeout(() => {
+        result.textContent = 'Gratulerer! Du vant en Ergonomisk tastatur!!';
+      }, 4000); // Matches the CSS animation duration
+    });
+  </script>
+
+</body>
+</html>
+
