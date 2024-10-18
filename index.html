@@ -34,7 +34,8 @@
       left: 50%;
       transform-origin: 0 0;
       text-align: center;
-      padding-top: 20px;
+      padding-top: 35px;
+      font-size: 14px;
       color: white;
       font-weight: bold;
     }
@@ -56,11 +57,24 @@
       font-size: 24px;
       color: #333;
     }
+
+    /* Yellow triangle indicator at the top */
+    #indicator {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 20px solid yellow;
+      position: absolute;
+      top: -30px;
+      left: calc(50% - 10px);
+    }
   </style>
 </head>
 <body>
 
   <div id="wheel">
+    <div id="indicator"></div>
     <div class="section">Ingen premie</div>
     <div class="section">Ingen premie</div>
     <div class="section">Ingen premie</div>
@@ -75,7 +89,6 @@
     const result = document.getElementById('result');
     const button = document.getElementById('spinBtn');
 
-    // Ensuring the user always wins
     button.addEventListener('click', () => {
       // Randomize rotation but always land on the prize section (which is 270deg)
       const spinDeg = Math.floor(Math.random() * 360) + (360 * 4) + 270;
