@@ -22,10 +22,11 @@ function myfunction() {
 
     // Typing effect for the result text after the spin completes
     setTimeout(function () {
-        typeText("Gratulerer! Du vant et Ergonomisk tastatur!!");
+        typeText("Gratulerer! Du vant et ergonomisk tastatur!! \nVelkommen tilbake neste år!");
     }, 5000); // Result text appears after the spin ends
-    sleep(5000)
-    header.innerHTML = "<center>Velkommen tilbake neste år!</center>";
+    const h1 = document.querySelector("h1")
+    //h1.innerHTML = "Velkommen tilbake neste år!"
+    
 }
 // Typing effect function
 function typeText(text) {
@@ -41,7 +42,4 @@ function typeText(text) {
             clearInterval(interval); 
         }
     }, 100); 
-}
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
 }
